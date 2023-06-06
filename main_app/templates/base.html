@@ -20,11 +20,10 @@
                 </ul>
                 <ul class="right">
                     {% if user.is_authenticated %}
-                    <!-- <li><a href="{% url 'cats_create' %}">Visited</a></li>
-                    <li><a href="{% url 'index' %}">Wishlist</a></li> -->
+
                     {% else %}
-                    <!-- <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'signup' %}">Signup</a></li> -->
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
                     {% endif %}
                 </ul>
             </div>
