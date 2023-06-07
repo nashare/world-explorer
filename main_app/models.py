@@ -21,3 +21,8 @@ class Country(models.Model):
 
     def __str__(self):
         return self.common_name
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    visited = models.ManyToManyField('Country', related_name='visitors')
+    wishlist = models.ManyToManyField('Country', related_name='wishlisted')
