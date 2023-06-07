@@ -26,10 +26,10 @@
             <div class="navbar-menu is-active">
                 <ul class="navbar-end">
                     {% if user.is_authenticated %}
-                    <a class="navbar-item" href="#">
+                    <a class="navbar-item" href="{% url 'visited' %}">
                         <i class="fa-solid fa-plane"></i>&nbsp;&nbsp;Travel Log
                     </a>
-                    <a class="navbar-item" href="#">
+                    <a class="navbar-item" href="{% url 'wishlist' %}">
                         <i class="fa-solid fa-heart"></i>&nbsp;&nbsp;Travel Wishlist
                     </a>
                     <a class="navbar-item" href="{% url 'logout' %}">Logout</a>

@@ -23,6 +23,18 @@ def country(request, region, country):
   return render(request, 'countries/country.html', {
         'country': country })
 
+def visited(request):
+  profile = Profile.objects.get(user=request.user)
+  countries = profile.visited.all()
+  return render(request, 'profile/visited.html', {
+        'countries': countries })
+
+def wishlist(request):
+  profile = Profile.objects.get(user=request.user)
+  countries = profile.wishlist.all()
+  return render(request, 'profile/wishlist.html', {
+        'countries': countries })
+
 def country_visit(request, region, country, country_id):
   Profile.objects.get(user=request.user).visited.add(country_id)
   return redirect('region', region)

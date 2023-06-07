@@ -15,10 +15,12 @@
                     {{ country.common_name }}
                 </p>
                 <footer class="card-footer">
-                    <a href="{% url 'country_visit' country.region country.common_name country.id %}" class="card-footer-item">
+                    <a href="{% url 'country_visit' country.region country.common_name country.id %}"
+                        class="card-footer-item">
                         <i class="fa-solid fa-plane-circle-check has-text-info"></i>
                     </a>
-                    <a href="{% url 'country_wishlist' country.region country.common_name country.id %}" class="card-footer-item">
+                    <a href="{% url 'country_wishlist' country.region country.common_name country.id %}"
+                        class="card-footer-item">
                         <i class="fa-solid fa-heart-circle-check has-text-info"></i>
                     </a>
                 </footer>
