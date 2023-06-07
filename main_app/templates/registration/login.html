@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Log In</h1>
+<div class="center">
+    <h1 class="title is-3">Please Login</h1>
 
-<form method="POST" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="hidden" name="next" value="{{ next }}">
-    <button type="submit" class="btn">Log In</button>
-</form>
+    <div class="has-text-danger-dark">{{ form.non_field_errors }}</div>
+
+    <form method="POST" class="center login-form" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            {{ field.errors }}
+            <label class="label label-margin">{{ field.label_tag }}</label>
+            <div class="input is-success is-normal" type="text">{{ field }}</div>
+            {% if field.help_text %}
+            <p class="content is-small">{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <input class="button is-success button-margin" type="submit" value="Login">
+    </form>
+</div>
 
 {% endblock %}

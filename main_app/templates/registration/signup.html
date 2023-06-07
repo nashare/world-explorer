@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Sign Up</h1>
+<div class="center">
+    <h1 class="title is-3">Please Sign Up</h1>
 
-<p class="red-text">{{ error_message }}</p>
+    <div class="has-text-danger-dark">{{ error_message }}</div>
 
-<form method="POST" action="{% url 'signup' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn" value="Sign Up">
-</form>
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            {{ field.errors }}
+            <label class="label label-margin">{{ field.label_tag }}</label>
+            <div class="input is-success">{{ field }}</div>
+            {% if field.help_text %}
+            <p>{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="center">
+            <input class="button is-success button-margin" type="submit" value="Sign Up">
+        </div>
+    </form>
+</div>
 
 {% endblock %}

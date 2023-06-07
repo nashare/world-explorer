@@ -7,3 +7,35 @@ body {
 .footer-padding {
     padding: 2vmin;
 }
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-margin {
+    margin: 2vmin;
+}
+
+.danger-margin {
+    padding-bottom: 2vmin;
+}
+
+input {
+    width: 100%;
+    border: none;
+}
+
+form ul li {
+    font-size: .75rem;
+}
+
+form p {
+    font-size: .75rem;
+}
+
+.label-margin {
+    margin-top: 1vmin;
+}
