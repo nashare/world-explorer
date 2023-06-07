@@ -5,10 +5,18 @@
     <div class="column is-one-fifth">
         <a href="">
             <div class="card">
-                <img src="{{ country.flags.png }}" alt="{{ country.flags.alt }}">
+                <div class="card-image">
+                    <figure class="image">
+                        <img src="{{ country.flags.png }}" alt="{{ country.flags.alt }}">
+                    </figure>
+                </div>
                 <p class="title is-4 p-4 container has-text-centered has-text-weight-medium is-family-monospace">
                     {{ country.name.common }}
                 </p>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">Visited</a>
+                    <a href="#" class="card-footer-item">Wishlist</a>
+                </footer>
             </div>
         </a>
     </div>

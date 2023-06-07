@@ -13,9 +13,8 @@ class Country(models.Model):
     population = models.IntegerField()
     area = models.FloatField()
     google_maps = models.URLField()
-    currency_name = models.CharField(max_length=255)
-    currency_symbol = models.CharField(max_length=10)
-    language = models.CharField(max_length=255)
+    currencies = models.CharField(max_length=255)
+    languages = models.CharField(max_length=255)
     flag_png = models.URLField()
     flag_alt = models.TextField()
 
