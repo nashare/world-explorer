@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h1>Home</h1>
+
+{% for region in regions %}
+<div class="columns">
+    <div class="column is-one-third">
+        <div class="card">
+            <img src="https://i.imgur.com/RJXH3H1.jpg">
+            <p class="title is-4 p-padding">{{ region }}</p>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
 {% endblock %}

@@ -5,8 +5,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+REGIONS = ['Asia', 'Oceania', 'Europe', 'Americas', 'Antarctic', 'Africa']
+
 def home(request):
-  return render(request, 'home.html')
+  return render(request, 'home.html', {'regions': REGIONS})
+
+def region(request):
+  return
 
 def signup(request):
   error_message = ''
@@ -17,7 +22,7 @@ def signup(request):
       login(request, user)
       return redirect('home')
     else:
-      error_message = 'Invalid sign up - try again'
+      error_message = 'Invalid sign up. Please try again!'
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
