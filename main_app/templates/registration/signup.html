@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="center">
     <h1 class="title is-3">Please Sign Up</h1>
 
     <div class="has-text-danger-dark">{{ error_message }}</div>
@@ -11,17 +10,14 @@
         {% for field in form %}
         <div>
             {{ field.errors }}
-            <label class="label label-margin">{{ field.label_tag }}</label>
+            <label class="label mt-2">{{ field.label_tag }}</label>
             <div class="input is-success">{{ field }}</div>
             {% if field.help_text %}
             <p>{{ field.help_text }}</p>
             {% endif %}
         </div>
         {% endfor %}
-        <div class="center">
-            <input class="button is-success button-margin" type="submit" value="Sign Up">
-        </div>
+            <input class="button is-success mt-3" type="submit" value="Sign Up">
     </form>
-</div>
 
 {% endblock %}

@@ -1,26 +1,5 @@
 body {
-    display: flex;
     min-height: 100vh;
-    flex-direction: column;
-}
-
-.footer-padding {
-    padding: 2vmin;
-}
-
-.center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.button-margin {
-    margin: 2vmin;
-}
-
-.danger-margin {
-    padding-bottom: 2vmin;
 }
 
 input {
@@ -34,8 +13,4 @@ form ul li {
 
 form p {
     font-size: .75rem;
-}
-
-.label-margin {
-    margin-top: 1vmin;
 }

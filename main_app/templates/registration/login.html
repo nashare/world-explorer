@@ -1,25 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="center">
     <h1 class="title is-3">Please Login</h1>
 
     <div class="has-text-danger-dark">{{ form.non_field_errors }}</div>
 
-    <form method="POST" class="center login-form" action="{% url 'login' %}">
+    <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         {% for field in form %}
         <div>
             {{ field.errors }}
-            <label class="label label-margin">{{ field.label_tag }}</label>
-            <div class="input is-success is-normal" type="text">{{ field }}</div>
+            <label class="label mt-2">{{ field.label_tag }}</label>
+            <div class="input is-success" type="text">{{ field }}</div>
             {% if field.help_text %}
             <p class="content is-small">{{ field.help_text }}</p>
             {% endif %}
         </div>
         {% endfor %}
-        <input class="button is-success button-margin" type="submit" value="Login">
+        <input class="button is-success mt-3" type="submit" value="Login">
     </form>
-</div>
 
 {% endblock %}
