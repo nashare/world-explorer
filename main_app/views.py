@@ -1,3 +1,4 @@
+import requests
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
@@ -10,8 +11,16 @@ REGIONS = ['Asia', 'Oceania', 'Europe', 'Americas', 'Antarctic', 'Africa']
 def home(request):
   return render(request, 'home.html', {'regions': REGIONS})
 
-def region(request):
-  return
+def region(request, region):
+  url = f'https://restcountries.com/v3.1/region/{region}'
+  response = requests.get(url)
+  error = ''
+  if response.status_code == 200:
+      countries = response.json()
+  else:
+      error = 'Try again'
+  return render(request, 'countries/regions.html', {
+        'countries': countries, 'error': error})
 
 def signup(request):
   error_message = ''
