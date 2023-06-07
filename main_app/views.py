@@ -17,6 +17,11 @@ def region(request, region):
   return render(request, 'countries/regions.html', {
         'countries': countries })
 
+def country(request, region, country):
+  country = Country.objects.get(common_name=country)
+  return render(request, 'countries/country.html', {
+        'country': country })
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
