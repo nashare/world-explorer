@@ -23,7 +23,7 @@ class Command(BaseCommand):
                     area=country['area'],
                     google_maps=country.get('maps').get('googleMaps'),
                     currencies=", ".join(list(country.get('currencies', {}).keys())),
-                    languages=country.get('languages', {}),
+                    languages=", ".join(list(country.get('languages', {}).values())),
                     flag_png=country.get('flags').get('png'),
                     flag_alt=country.get('flags').get('alt', 'unknown')
                 )

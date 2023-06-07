@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Country
 
 REGIONS = ['Asia', 'Oceania', 'Europe', 'Americas', 'Antarctic', 'Africa']
 
@@ -12,15 +13,9 @@ def home(request):
   return render(request, 'home.html', {'regions': REGIONS})
 
 def region(request, region):
-  url = f'https://restcountries.com/v3.1/region/{region}'
-  response = requests.get(url)
-  error = ''
-  if response.status_code == 200:
-      countries = response.json()
-  else:
-      error = 'Try again'
+  countries = Country.objects.filter(region=region).order_by('common_name')
   return render(request, 'countries/regions.html', {
-        'countries': countries, 'error': error})
+        'countries': countries })
 
 def signup(request):
   error_message = ''
