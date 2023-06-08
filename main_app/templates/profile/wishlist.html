@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="columns is-multiline py-6">
+<div class="columns is-multiline  m-6">
     {% for country in countries %}
     <div class="column is-one-fifth">
         <a href="{% url 'country' country.region country.common_name %}">
@@ -10,6 +9,7 @@
                     <figure class="image">
                         <img src="{{ country.flag_png }}" alt="{{ country.flag_alt }}">
                     </figure>
+                    <hr />
                 </div>
                 <p class="title is-4 p-4 container has-text-centered has-text-weight-medium is-family-monospace">
                     {{ country.common_name }}

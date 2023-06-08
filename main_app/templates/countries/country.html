@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container is-flex is-flex-direction-column is-justify-content-center is-align-items-center mt-6 mb-6">
 <div class="columns">
     <div class="column is-one-quarter">
         <p class="title is-3 container has-text-centered has-text-weight-medium is-family-monospace">
@@ -60,21 +61,26 @@
         </table>
     </div>
 </div>
-    <div>
-        <form action="{% url 'add_comment' country.region country.common_name %}" method="POST">
-            {% csrf_token %}
-            {% for field in comment_form %}
-            <div>
-                <label class="label mt-2">Leave your comment:</label>
-                <div class="input is-success" type="text">{{ field }}</div>
-            </div>
-            {% endfor %}
-            <div>
-                <input class="button is-success mt-3" type="submit" value="Add Comment">
-            </div>
-        </form>
-    </div>
+</div>
+<div class="m-6 columns">
+    <form class="column is-one-third column-no-padding" action="{% url 'add_comment' country.region country.common_name %}" method="POST">
+        {% csrf_token %}
+        {% for field in comment_form %}
+        <div>
+            <label class="label mt-2">Leave your comment:</label>
+            <div class="input is-success" type="text">{{ field }}</div>
+        </div>
+        {% endfor %}
+        <div>
+            <input class="button is-success mt-3" type="submit" value="Add Comment">
+        </div>
+    </form>
+</div>
+    <div class="m-6">
     {% for comment in comments %}
-    <label class="label mt-2">{{ comment.user.username }}:</label><p>{{ comment.text }}</p>
+    <label class="label is-inline-block">{{ comment.user.username }} left a comment:</label>
+    <p class="is-inline-block">{{ comment.text }}</p>
+    <div></div>
     {% endfor %}
+    </div>
 {% endblock %}

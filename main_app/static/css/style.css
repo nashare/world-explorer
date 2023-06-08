@@ -19,3 +19,15 @@ form textarea {
     width: 20vmin;
     height: 3vmin;
 }
+
+main {
+      flex: 1 0 auto;
+}
+
+.column-no-padding {
+    padding: 0;
+}
+
+hr {
+    margin: 0;
+}
