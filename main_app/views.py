@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Country, Profile, Comment
 from .forms import CommentForm
 
@@ -12,6 +11,7 @@ REGIONS = ['Asia', 'Oceania', 'Europe', 'Americas', 'Antarctic', 'Africa']
 def home(request):
   return render(request, 'home.html', {'regions': REGIONS})
 
+@login_required
 def region(request, region):
   profile = Profile.objects.get(user=request.user)
   wishlist = profile.wishlist.all()
@@ -20,6 +20,7 @@ def region(request, region):
   return render(request, 'countries/regions.html', {
         'countries': countries, 'wishlist': wishlist, 'visited': visited })
 
+@login_required
 def country(request, region, country):
   country = Country.objects.get(common_name=country)
   comments = Comment.objects.filter(country=country.id)
@@ -27,6 +28,7 @@ def country(request, region, country):
   return render(request, 'countries/country.html', {
         'country': country, 'comment_form': comment_form, 'comments': comments })
 
+@login_required
 def visited(request):
   profile = Profile.objects.get(user=request.user)
   countries = profile.visited.all()
@@ -34,6 +36,7 @@ def visited(request):
   return render(request, 'profile/visited.html', {
         'countries': countries, 'wishlist': wishlist })
 
+@login_required
 def wishlist(request):
   profile = Profile.objects.get(user=request.user)
   countries = profile.wishlist.all()
@@ -41,6 +44,7 @@ def wishlist(request):
   return render(request, 'profile/wishlist.html', {
         'countries': countries, 'visited': visited })
 
+@login_required
 def visit_wishlist_redirect(request, region):
   referer = request.META.get('HTTP_REFERER')
   if 'wishlist' in referer:
@@ -49,23 +53,28 @@ def visit_wishlist_redirect(request, region):
     return redirect('visited')
   else:
     return redirect('region', region)
-
+  
+@login_required
 def country_visit(request, region, country, country_id):
   Profile.objects.get(user=request.user).visited.add(country_id)
   return visit_wishlist_redirect(request, region)
 
+@login_required
 def country_wishlist(request, region, country, country_id):
   Profile.objects.get(user=request.user).wishlist.add(country_id)
   return visit_wishlist_redirect(request, region)
 
+@login_required
 def country_visit_remove(request, region, country, country_id):
   Profile.objects.get(user=request.user).visited.remove(country_id)
   return visit_wishlist_redirect(request, region)
 
+@login_required
 def country_wishlist_remove(request, region, country, country_id):
   Profile.objects.get(user=request.user).wishlist.remove(country_id)
   return visit_wishlist_redirect(request, region)
 
+@login_required
 def country_comment(request, region, country):
   form = CommentForm(request.POST)
   country_obj = Country.objects.get(common_name=country)
