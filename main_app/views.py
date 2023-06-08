@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Country, Profile, Comment
 from .forms import CommentForm
 
-REGIONS = ['Asia', 'Oceania', 'Europe', 'Americas', 'Antarctic', 'Africa']
+REGIONS = ['Americas', 'Europe', 'Asia', 'Africa', 'Oceania',  'Antarctic']
 
 def home(request):
   return render(request, 'home.html', {'regions': REGIONS})
