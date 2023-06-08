@@ -31,7 +31,7 @@ def country(request, region, country):
 @login_required
 def visited(request):
   profile = Profile.objects.get(user=request.user)
-  countries = profile.visited.all()
+  countries = profile.visited.all().order_by('common_name')
   wishlist = profile.wishlist.all()
   return render(request, 'profile/visited.html', {
         'countries': countries, 'wishlist': wishlist })
@@ -39,7 +39,7 @@ def visited(request):
 @login_required
 def wishlist(request):
   profile = Profile.objects.get(user=request.user)
-  countries = profile.wishlist.all()
+  countries = profile.wishlist.all().order_by('common_name')
   visited = profile.visited.all()
   return render(request, 'profile/wishlist.html', {
         'countries': countries, 'visited': visited })
