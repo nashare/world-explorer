@@ -17,15 +17,15 @@
                 <footer class="card-footer">
                     {% if country in visited %}
                     <a href="{% url 'country_visit_remove' country.region country.common_name country.id %}" class="card-footer-item">
-                        <i class="fa-solid fa-plane-circle-xmark has-text-danger"></i>
+                        <i class="fa-solid fa-plane-circle-check has-text-info"></i>
                     </a>
                     {% else %}
                     <a href="{% url 'country_visit' country.region country.common_name country.id %}" class="card-footer-item">
-                        <i class="fa-solid fa-plane-circle-check has-text-info"></i>
+                        <i class="fa-solid fa-plane-circle-xmark has-text-grey-light"></i>
                     </a>
                     {% endif %}
                     <a href="{% url 'country_wishlist_remove' country.region country.common_name country.id %}" class="card-footer-item">
-                        <i class="fa-solid fa-heart-circle-xmark has-text-danger"></i>
+                        <i class="fa-solid fa-heart-circle-check has-text-info"></i>
                     </a>
                 </footer>
             </div>
