@@ -1,4 +1,3 @@
-import requests
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
