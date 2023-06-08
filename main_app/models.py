@@ -32,5 +32,8 @@ class Profile(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = models.CharField(max_length=1000)
     country = models.ForeignKey('Country', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username} on {self.country}"

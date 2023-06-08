@@ -5,7 +5,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Country, Profile
+from .models import Country, Profile, Comment
+from .forms import CommentForm
 
 REGIONS = ['Asia', 'Oceania', 'Europe', 'Americas', 'Antarctic', 'Africa']
 
@@ -22,8 +23,10 @@ def region(request, region):
 
 def country(request, region, country):
   country = Country.objects.get(common_name=country)
+  comments = Comment.objects.filter(country=country.id)
+  comment_form = CommentForm()
   return render(request, 'countries/country.html', {
-        'country': country })
+        'country': country, 'comment_form': comment_form, 'comments': comments })
 
 def visited(request):
   profile = Profile.objects.get(user=request.user)
@@ -63,6 +66,16 @@ def country_visit_remove(request, region, country, country_id):
 def country_wishlist_remove(request, region, country, country_id):
   Profile.objects.get(user=request.user).wishlist.remove(country_id)
   return visit_wishlist_redirect(request, region)
+
+def country_comment(request, region, country):
+  form = CommentForm(request.POST)
+  country_obj = Country.objects.get(common_name=country)
+  if form.is_valid():
+    new_comment = form.save(commit=False)
+    new_comment.country = country_obj
+    new_comment.user = request.user
+    new_comment.save()
+  return redirect('country', country_obj.region, country)
 
 def signup(request):
   error_message = ''

@@ -1,35 +1,80 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p>{{country.common_name}}</p>
-    <img src="{{ country.flag_png }}" alt="{{ country.flag_alt }}">
-    <table class="table">
-    <thead class="thead">
-        <tr class="thead">
-            <th class="th">Official name</th>
-            <th class="th">Region</th>
-            <th class="th">Subregion</th>
-            <th class="th">Capital</th>
-            <th class="th">Independent</th>
-            <th class="th">Population</th>
-            <th class="th">Area</th>
-            <th class="th">Google Maps</th>
-            <th class="th">Currencies</th>
-            <th class="th">Languages</th>
-        </tr>
-    </thead>
-    <tbody class="tbody">
-        <tr class="tr">
-            <td class="td">{{country.official_name}}</td>
-            <td class="td">{{country.region}}</td>
-            <td class="td">{{country.subregion}}</td>
-            <td class="td">{{country.capital}}</td>
-            <td class="td">{{country.independent}}</td>
-            <td class="td">{{country.population}}</td>
-            <td class="td">{{country.area}}</td>
-            <td class="td"><a href="{{country.google_maps}}">{{country.google_maps}}</a></td>
-            <td class="td">{{country.currencies}}</td>
-            <td class="td">{{country.languages}}</td>
-        </tr>
-    </tbody>
-    </table>
+<div class="columns">
+    <div class="column is-one-quarter">
+        <p class="title is-3 container has-text-centered has-text-weight-medium is-family-monospace">
+            {{country.common_name}}
+        </p>
+        <figure class="image is-centered">
+            <img src="{{ country.flag_png }}" alt="{{ country.flag_alt }}">
+        </figure>
+    </div>
+    <div class="column">
+        <table class="table">
+            <tr>
+                <th>Official name:</th>
+                <td>{{country.official_name}}</td>
+            </tr>
+            <tr>
+                <th>Region:</th>
+                <td>{{country.region}}</td>
+            </tr>
+            <tr>
+                <th>Subregion:</th>
+                <td>{{country.subregion}}</td>
+            </tr>
+            <tr>
+                <th>Capital:</th>
+                <td>{{country.capital}}</td>
+            </tr>
+            <tr>
+                <th>Independent:</th>
+                <td>{{country.independent}}</td>
+            </tr>
+            <tr>
+        </table>
+    </div>
+    <div class="column">
+        <table class="table">
+            <tr>
+                <th>Population:</th>
+                <td>{{country.population}}</td>
+            </tr>
+            <tr>
+                <th>Area:</th>
+                <td>{{country.area}}</td>
+            </tr>
+            <tr>
+                <th>Google Maps:</th>
+                <td><a href="{{country.google_maps}}" target="_blank">link</a></td>
+            </tr>
+            <tr>
+                <th>Currencies:</th>
+                <td>{{country.currencies}}</td>
+            </tr>
+            <tr>
+                <th>Languages:</th>
+                <td>{{country.languages}}</td>
+            </tr>
+            <tr>
+        </table>
+    </div>
+</div>
+    <div class="">
+        <form action="{% url 'add_comment' country.region country.common_name %}" method="POST">
+            {% csrf_token %}
+            {% for field in comment_form %}
+            <div>
+                <label class="label mt-2">Leave your comment:</label>
+                <div class="input is-success" type="text">{{ field }}</div>
+            </div>
+            {% endfor %}
+            <div>
+                <input class="button is-success mt-3" type="submit" value="Add Comment">
+            </div>
+        </form>
+    </div>
+    {% for comment in comments %}
+    <label class="label mt-2">{{ comment.user.username }}:</label><p>{{ comment.text }}</p>
+    {% endfor %}
 {% endblock %}

@@ -14,3 +14,8 @@ form ul li {
 form p {
     font-size: .75rem;
 }
+
+form textarea {
+    width: 20vmin;
+    height: 3vmin;
+}
