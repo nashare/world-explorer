@@ -32,10 +32,13 @@
                     <a class="navbar-item" href="{% url 'wishlist' %}">
                         <i class="fa-solid fa-heart"></i>&nbsp;&nbsp;Travel Wishlist
                     </a>
-                    <a class="navbar-item" href="{% url 'logout' %}">Logout</a>
+                    <a class="navbar-item" href="{% url 'logout' %}">
+                        <i class="fa-solid fa-right-from-bracket"></i></i>&nbsp;&nbsp;Logout</a>
                     {% else %}
-                    <a class="navbar-item" href="{% url 'signup' %}">Sign Up</a>
-                    <a class="navbar-item" href="{% url 'login' %}">Log In</a>
+                    <a class="navbar-item" href="{% url 'signup' %}">
+                        <i class="fa-solid fa-user-plus"></i>&nbsp;&nbsp;Sign Up</a>
+                    <a class="navbar-item" href="{% url 'login' %}">
+                        <i class="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;Log In</a>
                     {% endif %}
                 </ul>
             </div>
