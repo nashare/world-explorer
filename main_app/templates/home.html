@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="container is-flex is-flex-direction-column is-justify-content-center is-align-items-center mt-4 mb-4">
+<div class="container is-flex is-flex-direction-column is-justify-content-center is-align-items-center p-6">
 <div class="columns is-multiline py-6">
 {% for region in regions %}
     <div class="column is-one-third">
         <a href="{% url 'region' region %}">
-        <div class="card">
-            <img src="https://i.imgur.com/RJXH3H1.jpg">
+        <div class="card p-6">
+            <img src="https://i.imgur.com/JapDFfg.png" alt="{{region}}">
             <p class="title is-4 p-4 container has-text-centered has-text-weight-medium is-family-monospace">{{ region }}</p>
         </div>
         </a>
