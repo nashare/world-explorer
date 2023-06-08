@@ -14,9 +14,11 @@ def home(request):
 
 def region(request, region):
   profile = Profile.objects.get(user=request.user)
+  wishlist = profile.wishlist.all()
+  visited = profile.visited.all()
   countries = Country.objects.filter(region=region).order_by('common_name')
   return render(request, 'countries/regions.html', {
-        'countries': countries, 'profile': profile })
+        'countries': countries, 'wishlist': wishlist, 'visited': visited })
 
 def country(request, region, country):
   country = Country.objects.get(common_name=country)
@@ -26,23 +28,41 @@ def country(request, region, country):
 def visited(request):
   profile = Profile.objects.get(user=request.user)
   countries = profile.visited.all()
+  wishlist = profile.wishlist.all()
   return render(request, 'profile/visited.html', {
-        'countries': countries })
+        'countries': countries, 'wishlist': wishlist })
 
 def wishlist(request):
   profile = Profile.objects.get(user=request.user)
   countries = profile.wishlist.all()
+  visited = profile.visited.all()
   return render(request, 'profile/wishlist.html', {
-        'countries': countries })
+        'countries': countries, 'visited': visited })
+
+def visit_wishlist_redirect(request, region):
+  referer = request.META.get('HTTP_REFERER')
+  if 'wishlist' in referer:
+    return redirect('wishlist')
+  elif 'visited' in referer:
+    return redirect('visited')
+  else:
+    return redirect('region', region)
 
 def country_visit(request, region, country, country_id):
   Profile.objects.get(user=request.user).visited.add(country_id)
-  return redirect('region', region)
+  return visit_wishlist_redirect(request, region)
 
 def country_wishlist(request, region, country, country_id):
   Profile.objects.get(user=request.user).wishlist.add(country_id)
-  return redirect('region', region)
+  return visit_wishlist_redirect(request, region)
 
+def country_visit_remove(request, region, country, country_id):
+  Profile.objects.get(user=request.user).visited.remove(country_id)
+  return visit_wishlist_redirect(request, region)
+
+def country_wishlist_remove(request, region, country, country_id):
+  Profile.objects.get(user=request.user).wishlist.remove(country_id)
+  return visit_wishlist_redirect(request, region)
 
 def signup(request):
   error_message = ''

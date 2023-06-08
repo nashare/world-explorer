@@ -1,4 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
     <p>{{country.common_name}}</p>
+    <img src="{{ country.flag_png }}" alt="{{ country.flag_alt }}">
+    <table class="table">
+    <thead class="thead">
+        <tr class="thead">
+            <th class="th">Official name</th>
+            <th class="th">Region</th>
+            <th class="th">Subregion</th>
+            <th class="th">Capital</th>
+            <th class="th">Independent</th>
+            <th class="th">Population</th>
+            <th class="th">Area</th>
+            <th class="th">Google Maps</th>
+            <th class="th">Currencies</th>
+            <th class="th">Languages</th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+        <tr class="tr">
+            <td class="td">{{country.official_name}}</td>
+            <td class="td">{{country.region}}</td>
+            <td class="td">{{country.subregion}}</td>
+            <td class="td">{{country.capital}}</td>
+            <td class="td">{{country.independent}}</td>
+            <td class="td">{{country.population}}</td>
+            <td class="td">{{country.area}}</td>
+            <td class="td"><a href="{{country.google_maps}}">{{country.google_maps}}</a></td>
+            <td class="td">{{country.currencies}}</td>
+            <td class="td">{{country.languages}}</td>
+        </tr>
+    </tbody>
+    </table>
 {% endblock %}

@@ -29,3 +29,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    country = models.ForeignKey('Country', on_delete=models.CASCADE)
