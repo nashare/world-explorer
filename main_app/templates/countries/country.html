@@ -63,7 +63,7 @@
 </div>
 </div>
 <div class="m-6 columns">
-    <form class="column is-one-third column-no-padding" action="{% url 'add_comment' country.region country.common_name %}" method="POST">
+    <form class="column is-one-third p-0" action="{% url 'add_comment' country.region country.common_name %}" method="POST">
         {% csrf_token %}
         {% for field in comment_form %}
         <div>
