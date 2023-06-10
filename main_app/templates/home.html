@@ -6,7 +6,7 @@
 {% for region in regions %}
     <div class="column is-one-third">
         <a href="{% url 'region' region %}">
-        <div class="card p-6">
+        <div class="card p-4">
             <img src="{% static 'media/'|add:region|add:'.png' %}" alt="{{ region }}">
             <p class="title is-4 p-4 container has-text-centered has-text-weight-medium is-family-monospace">{{ region }}</p>
         </div>
