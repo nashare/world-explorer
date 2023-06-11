@@ -14,10 +14,10 @@ This app will help you explore countries worldwide, allowing you to leave commen
 - **Git**
 - **Visual Studio Code**
 
-# Getting Started:
+# Getting Started
 - **Link to the app**: https://world-explorer-4.herokuapp.com/
 - **Trello board**: https://trello.com/b/oJGzUKoH/project-4
 
-# Next Steps: 
+# Next Steps
 - **Add a search function to the navigation bar**
 - **Implement filtering functions for country languages**
