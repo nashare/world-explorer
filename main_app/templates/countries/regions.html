@@ -7,14 +7,15 @@
         <a href="{% url 'country' country.region country.common_name %}">
             <div class="card">
                 <div class="card-image">
-                    <figure class="image">
+                    <figure class="image is-flex is-justify-content-center is-align-items-center">
                         <img src="{{ country.flag_png }}" alt="{{ country.flag_alt }}">
                     </figure>
-                    <hr class="m-0"/>
                 </div>
-                <p class="title is-4 p-4 container has-text-centered has-text-weight-medium is-family-monospace">
+                <div class="is-flex is-justify-content-center is-align-items-center name-element">
+                <p class="title is-4 container has-text-centered has-text-weight-medium is-family-monospace">
                     {{ country.common_name }}
                 </p>
+                </div>
                 <footer class="card-footer">
                     {% if country in visited %}
                         <a href="{% url 'country_visit_remove' country.region country.common_name country.id %}" class="card-footer-item">

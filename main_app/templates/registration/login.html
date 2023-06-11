@@ -2,6 +2,9 @@
 {% block content %}
 <div class="container is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
     <h1 class="title is-3 pt-6">Please Login</h1>
+    <h3 class="title is-6">Don't have an account? 
+        <a href="{% url 'signup' %}">Sign up here</a>
+    </h3>
     <div class="has-text-danger-dark">{{ form.non_field_errors }}</div>
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
