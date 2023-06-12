@@ -17,7 +17,7 @@ class Command(BaseCommand):
                     common_name=country.get('name').get('common'),
                     region=country.get('region'),
                     subregion=country.get('subregion', 'unknown'),
-                    capital=country.get('capital', 'unknown')[0],
+                    capital=country.get('capital', '-')[0],
                     independent=country.get('independent', 'unknown'),
                     population=country.get('population'),
                     area=country.get('area'),
