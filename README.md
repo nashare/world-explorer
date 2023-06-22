@@ -1,5 +1,5 @@
 # World Explorer
-This app will help you explore countries worldwide, allowing you to leave comments, create a travel log, and build your personal wishlist.
+[This app](https://world-explorer-4.herokuapp.com/) will help you explore countries worldwide, allowing you to leave comments, create a travel log, and build your personal wishlist.
 
 # Screenshots
 ![Main Page](images/regions.png)
